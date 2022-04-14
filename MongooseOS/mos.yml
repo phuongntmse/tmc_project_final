@@ -1,0 +1,57 @@
+author: mongoose-os
+description: A Mongoose OS app skeleton
+version: 1.0
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+# Optional. List of tags for online search.
+tags:
+    - c
+# List of files / directories with C sources. No slashes at the end of dir names.
+sources:
+    - src
+# List of dirs. Files from these dirs will be copied to the device filesystem
+
+config_schema:
+  - ["debug.level", 3]
+  - ["sys.atca.enable", "b", true, {title: "enable atca for ATEC608"}]
+  - ["i2c.enable", "b", true, {title: "Enable I2C"}]
+  - ["sys.atca.i2c_addr", "i", 0x60, {title: "I2C address of the chip"}]
+  - ["wifi.ap.enable", "b", false, {title: "Enable"}]
+  - ["wifi.sta.enable", "b", true, {title: "Connect to existing WiFi"}]
+  - ["wifi.sta.ssid", "vn1"]
+  - ["wifi.sta.pass", "23456789"]
+  - ["mqtt.enable", true]
+  - ["mqtt.server", "mqtt.com:8883"]
+  - ["mqtt.user", "nguyen.nguyen.doan"]
+  - ["mqtt.pass", "1234"]
+  - ["mqtt.ssl_ca_cert", "ecc.ca.cert.pem"]
+  - ["mqtt.ssl_cert", "ecc.esp8266.cert.pem"]
+  - ["mqtt.ssl_key", "ATCA:0"]
+
+cdefs:
+  MG_ENABLE_MQTT: 1
+  # MG_ENABLE_SSL: 1
+
+build_vars:
+  # Override to 0 to disable ATECCx08 support.    
+  # Set to 1 to enable ATECCx08 support.
+  # MGOS_MBEDTLS_ENABLE_ATCA: 0
+  MGOS_MBEDTLS_ENABLE_ATCA: 1
+
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
+  - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-mqtt
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/wifi
+  - origin: https://github.com/mongoose-os-libs/rpc-service-i2c
+  - origin: https://github.com/mongoose-os-libs/mbedtls
+  - origin: https://github.com/mongoose-os-libs/atca
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-service-atca
+  
+# Used by the mos tool to catch mos binaries incompatible with this file format
+manifest_version: 2017-05-18
