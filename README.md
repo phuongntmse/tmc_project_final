@@ -622,6 +622,7 @@ sudo mos -X atca-set-key 0 ecc.esp8266.key.pem --write-key=slot4.key --dry-run=f
 sudo mos console
 ```
 <hr/>
+
 ## 6. Communications between ESP8266 and Raspberry Pi (WiFi and MQTT)
 To check the security connection between ESP8266 and Raspberry Pi, we run script `esp.sh`. The outputs as the following.
 
@@ -709,6 +710,7 @@ Output for MQTT publish:
 [Feb 18 02:42:14.279] mgos_mqtt_conn.c:179    MQTT0 event: 204
 ```
 <hr/>
+
 ## 7. Communications between Raspberry Pi and Raspberry Pi (LoRa)
 The Raspberry Pi which is configured with the MQTT server will behave as a LoRa client by retrieving the data published by the ESP8266 component and sending it to the second Raspberry Pi which behaves as a server through a LoRa Radio communication.
 #### Raspberry Pi Initial Setup
